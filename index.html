@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: separate;
+      }
+
+      .cell1 {
+        width: 25%;
+        text-align: center;
+        font-weight: bold;
+      }
+      .cell2 {
+        width: 30%;
+      }
+      .inner_button {
+        position: relative;
+        bottom: 5px;
+        left: 37%;
+      }
+
+      .part1 label {
+        display: inline-block;
+        width: 120px;
+      }
+
+      .part1 input {
+        display: inline-block;
+        margin-bottom: 5px;
+        margin-left: 5px;
+      }
+      .part2 label {
+        display: inline-block;
+        width: 240px;
+      }
+
+      .part2 input {
+        display: inline-block;
+        margin-bottom: 5px;
+        margin-left: 5px;
+      }
+      .part3 label {
+        display: inline-block;
+        width: 230px;
+      }
+
+      .part3 input {
+        display: inline-block;
+        margin-bottom: 5px;
+        margin-left: 5px;
+      }
+      .part4 label {
+        display: inline-block;
+        width: 140px;
+      }
+
+      .part4 input {
+        display: inline-block;
+        margin-bottom: 5px;
+        margin-left: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Kişiye Özel Tişört Sipariş Aracı</h1>
+
+    <hr />
+    <p>
+      Lütfen oluşturmak istediğiniz siparişe ilişkin aşağıdaki bilgileri
+      doldurunuz
+    </p>
+
+    <form onsubmit="onayla(event)">
+      <div class="part1">
+        <h2>Kişisel Bilgiler</h2>
+        <label for="name">Adınız:</label>
+        <input type="text" id="name" name="name" required />
+        <br />
+        <label for="surname">Soyadınız:</label>
+        <input type="text" id="surname" name="surname" required />
+        <br />
+        <label for="birthDay">Doğum Tarihiniz:</label>
+        <input type="date" id="birthDay" name="birthDay" required />
+        <br />
+        <label for="email">Mail Adresiniz:</label>
+        <input type="email" id="email" name="email" required />
+        <br />
+        <label for="phone">Telefon:</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="5xx-xxx-xxxx"
+          required
+        />
+      </div>
+
+      <br />
+      <hr />
+
+      <div class="part2">
+        <h2>Sipariş Bilgileri</h2>
+        <label for="color">Tişört Rengi:</label>
+        <input type="color" id="color" name="color" required />
+        <br />
+        <label for="textColor">Yazı Rengi:</label>
+        <input type="color" id="textColor" name="textColor" />
+        <br />
+        <label for="textTshirt">Tişört üzerinde yazacak yazıyı girin:</label>
+        <input type="text" id="textTshirt" name="textTshirt" />
+        <br />
+        <label for="numberTshirt">Tişört Adedi:</label>
+        <input type="number" id="numberTshirt" name="numberTshirt" required />
+        <br />
+        <div class="slider">
+          <label for="size">Beden Seçiniz:</label>
+          <input
+            type="range"
+            id="size"
+            min="0"
+            max="5"
+            value="1"
+            list="sizeList"
+            required
+          />
+          <datalist id="sizeList">
+            <option value="0">XS</option>
+            <option value="1">S</option>
+            <option value="2">M</option>
+            <option value="3">L</option>
+            <option value="4">XL</option>
+            <option value="5">XXL</option>
+          </datalist>
+          <br />
+          <br />
+          <button type="button" id="sec">Seç</button>
+          <input type="text" id="sizeSec" required />
+        </div>
+      </div>
+      <br />
+      <div class="part3">
+        <h2>Teslimat Bilgileri</h2>
+        <label for="address">Adres:</label>
+        <textarea
+          name="address"
+          id="address"
+          col="30"
+          row="1"
+          name="address"
+          style="resize: vertical"
+          required
+        >
+        </textarea>
+        <br />
+        <label for="submitTime">Teslim tarihi için bir aralık seçiniz:</label>
+        <input type="week" id="submitTime" name="submitTime" required />
+      </div>
+      <br />
+      <hr />
+
+      <div class="part4">
+        <h2>Ödeme Bilgileri</h2>
+        <label for="nameSurname">Ad Soyad:</label>
+        <input type="text" id="nameSurname" name="nameSurname" required />
+        <br />
+        <label for="cardNumber">Kart Numarası:</label>
+        <input
+          id="cardNumber"
+          type="tel"
+          inputmode="numeric"
+          pattern="[0-9\s]{13,19}"
+          autocomplete="cc-number"
+          maxlength="19"
+          placeholder="xxxx xxxx xxxx xxxx"
+          required
+        />
+        <br />
+        <label for="cardDate">Son Kullanma Tarihi:</label>
+        <input type="month" id="cardDate" name="cardDate" required />
+        <br />
+        <label for="cardCvv">CVV:</label>
+        <input type="number" id="cardCvv" name="cardCvv" required />
+        <br />
+        <br />
+        <input type="submit" value="Onayla" />
+      </div>
+    </form>
+    <br />
+    <br />
+    <br />
+    <div>
+      <table id="table">
+        <tr>
+          <th colspan="3">SİPARİŞ ONAY</th>
+        </tr>
+
+        <tr>
+          <td rowspan="5" class="cell1">Kişisel Bilgiler</td>
+          <td class="cell2">Ad :</td>
+          <td><span id="tAd"></span></td>
+        </tr>
+
+        <tr>
+          <td class="cell2">Soyad :</td>
+          <td><span id="tSoyad"></span></td>
+        </tr>
+        <tr>
+          <td class="cell2">Doğum Tarihi :</td>
+          <td><span id="tDogum"></span></td>
+        </tr>
+        <tr>
+          <td class="cell2">Mail Adresi :</td>
+          <td><span id="tMail"></span></td>
+        </tr>
+        <tr>
+          <td class="cell2">Telefon :</td>
+          <td><span id="tTel"></span></td>
+        </tr>
+        <tr>
+          <td rowspan="5" class="cell1">Sipariş Bilgileri</td>
+          <td class="cell2">Tişört Rengi :</td>
+          <td><span id="tRenk"></span></td>
+        </tr>
+        <tr>
+          <td class="cell2">Yazı Rengi :</td>
+          <td><span id="tYaziRenk"></span></td>
+        </tr>
+        <tr>
+          <td class="cell2">Yazı :</td>
+          <td><span id="tYazi"></span></td>
+        </tr>
+        <tr>
+          <td class="cell2">Tişört Adedi :</td>
+          <td><span id="tAdet"></span></td>
+        </tr>
+        <tr>
+          <td class="cell2">Tişört Bedeni :</td>
+          <td><span id="tBeden"></span></td>
+        </tr>
+        <tr>
+          <td rowspan="2" class="cell1">Teslimat Bilgileri</td>
+          <td class="cell2">Adres :</td>
+          <td><span id="tAdres"></span></td>
+        </tr>
+        <tr>
+          <td class="cell2">Teslim Tarihi :</td>
+          <td><span id="tTeslimTarih"></span></td>
+        </tr>
+
+        <tr>
+          <td rowspan="5" class="cell1">Ödeme Bilgileri</td>
+          <td class="cell2">Ad Soyad :</td>
+          <td><span id="tAdSoyad"></span></td>
+        </tr>
+        <tr>
+          <td class="cell2">Kart Numarası :</td>
+          <td><span id="tKart"></span></td>
+        </tr>
+        <tr>
+          <td class="cell2">Son Kullanma Tarihi :</td>
+          <td><span id="tSonKullanma"></span></td>
+        </tr>
+        <tr>
+          <td class="cell2">CVV :</td>
+          <td><span id="tCvv"></span></td>
+        </tr>
+      </table>
+      <br />
+      <button type="button" id="tamamla" class="inner_button">Tamamla</button>
+    </div>
+    <script>
+      const size1 = document.getElementById("size");
+      const sizeList1 = document.getElementById("sizeList");
+      const sizeSec1 = document.getElementById("sizeSec");
+      const sec1 = document.getElementById("sec");
+      let sizeSecildi;
+      sec1.addEventListener("click", handleSize);
+
+      function handleSize() {
+        let option = sizeList1.options[size1.value];
+        sizeSec1.value = option.textContent;
+        sizeSecildi = sizeSec1.value;
+        return sizeSecildi;
+      }
+      function onayla(e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.toUpperCase();
+        const surname = document.getElementById("surname").value.toUpperCase();
+        const birthDay = document.getElementById("birthDay").value;
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("phone").value;
+        const color = document.getElementById("color").value;
+        const textColor = document.getElementById("textColor").value;
+        const textTshirt = document.getElementById("textTshirt").value;
+        const numberTshirt = Number(
+          document.getElementById("numberTshirt").value
+        );
+
+        const address = document.getElementById("address").value;
+        const submitTime = document.getElementById("submitTime").value;
+        const cardNumber = document.getElementById("cardNumber").value;
+        const cardDate = document.getElementById("cardDate").value;
+        console.log(email);
+        let data = [];
+        const nameSurname = document.getElementById("nameSurname").value;
+        const cardCvv = document.getElementById("cardCvv").value;
+        data = [
+          name,
+          surname,
+          birthDay,
+          email,
+          phone,
+          color,
+          textColor,
+          textTshirt,
+          textTshirt,
+          numberTshirt,
+          sizeSecildi,
+          address,
+          submitTime,
+          nameSurname,
+          cardNumber,
+          cardDate,
+          cardCvv,
+        ];
+
+        document.getElementById("tAd").innerHTML = data[0];
+        document.getElementById("tSoyad").innerHTML = data[1];
+        document.getElementById("tDogum").innerHTML = data[2];
+        document.getElementById("tMail").innerHTML = data[3];
+        document.getElementById("tTel").innerHTML = data[4];
+        document.getElementById("tRenk").innerHTML = data[5];
+        document.getElementById("tYaziRenk").innerHTML = data[6];
+        document.getElementById("tYazi").innerHTML = data[7];
+        document.getElementById("tAdet").innerHTML = data[8];
+        document.getElementById("tBeden").innerHTML = data[9];
+        document.getElementById("tAdres").innerHTML = data[10];
+        document.getElementById("tTeslimTarih").innerHTML = data[11];
+        document.getElementById("tAdSoyad").innerHTML = data[12];
+        document.getElementById("tKart").innerHTML = data[13];
+        document.getElementById("tSonKullanma").innerHTML = data[14];
+        document.getElementById("tCvv").innerHTML = data[15];
+        return true;
+      }
+
+      const tamamla1 = document.getElementById("tamamla");
+      tamamla1.addEventListener("click", tamamlaBtn);
+      function tamamlaBtn() {
+        alert("siparişiniz tamamlandı");
+      }
+    </script>
+  </body>
+</html>
